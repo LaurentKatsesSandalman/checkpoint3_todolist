@@ -10,6 +10,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   public async validateUser(email: string): Promise<User | null> {
@@ -37,9 +38,28 @@ export class AuthService {
     }
 
     const payload = { email: userData.email };
-    const accessToken = this.jwtService.sign(payload);
+
+    const jwtSecret = this.configService.get<string>('JWT_SECRET');
+    if (!jwtSecret) {
+      throw new Error('JWT_SECRET is not defined in .env');
+    }
+
+    const jwtExpiresInStr = this.configService.get<string>('JWT_EXPIRES_IN');
+    if (!jwtExpiresInStr) {
+      throw new Error('JWT_EXPIRES_IN is not defined in .env');
+    }
+
+    const jwtExpiresIn = parseInt(jwtExpiresInStr, 10);
+    if (isNaN(jwtExpiresIn)) {
+      throw new Error('JWT_EXPIRES_IN is not a valid number in .env');
+    }
+
+    const accessToken = this.jwtService.sign(payload, {
+      secret: jwtSecret,
+      expiresIn: jwtExpiresIn,
+    });
     return {
-      expires_in: 3600,
+      expires_in: jwtExpiresIn,
       access_token: accessToken,
     };
   }
