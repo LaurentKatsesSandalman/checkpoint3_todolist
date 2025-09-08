@@ -1,4 +1,4 @@
-import { Controller, Param, Get, Post, Body } from '@nestjs/common';
+import { Controller, Param, Get, Post, Body, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 
@@ -14,5 +14,10 @@ getUserById(@Param() params){ // probably not ! I want to get user by id to chec
 @Post()
 createUser(@Body() user:User){
     return this.userService.saveUser(user);
+}
+
+@Delete(':id')
+deleteUserById(@Param() params){ // see if you manage to do a /me route instead
+    return this.userService.deleteUser(params.id);
 }
 }

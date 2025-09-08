@@ -23,8 +23,8 @@ return await this.usersRepository.find({
     return this.usersRepository.save(user);
   }
 
-  deleteUser(user: User): void {
-    this.usersRepository.delete(user);
+  deleteUser(id:number): void {
+    this.usersRepository.delete(id); //delete from typeorm is based on "delete by id". More common than .delete(user)
   }
 
 }
