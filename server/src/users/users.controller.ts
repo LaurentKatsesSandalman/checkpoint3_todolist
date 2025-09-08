@@ -5,11 +5,17 @@ import { User } from './users.entity';
 @Controller('/users')
 export class UsersController {
     constructor(private readonly userService: UsersService){}
+/*
+@Get()
+getAllUsers(){ // should not be needed
+    return this.userService.getUsers();
+}
 
 @Get(':id')
 getUserById(@Param() params){ // probably not ! I want to get user by id to check things during auth
     return this.userService.getUser(params.id);
 }
+*/
 
 @Post()
 createUser(@Body() user:User){
