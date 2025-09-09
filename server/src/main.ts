@@ -18,7 +18,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-    // Swagger Configuration for DTOs
+  // Swagger Configuration for DTOs
   const config = new DocumentBuilder()
     .setTitle('TodoList API')
     .setDescription('Handles backend API to create todo tasks and subtasks')
