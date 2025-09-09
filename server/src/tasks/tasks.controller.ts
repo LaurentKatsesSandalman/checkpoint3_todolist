@@ -8,7 +8,7 @@ import {
   UseGuards,
   Request,
   Patch,
-  BadRequestException
+  BadRequestException,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './create-task.dto';
@@ -16,7 +16,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { OwnerGuard } from '.././common/guards/owner.guard';
 
 @Controller('users/:id/tasks')
-  @UseGuards(AuthGuard('jwt'), OwnerGuard)
+@UseGuards(AuthGuard('jwt'), OwnerGuard)
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
@@ -30,7 +30,10 @@ export class TasksController {
   }
 
   @Get(':taskId')
-  async getTaskById(@Param('id') id: string, @Param('taskId') taskIdParam: string) {
+  async getTaskById(
+    @Param('id') id: string,
+    @Param('taskId') taskIdParam: string,
+  ) {
     const userId = parseInt(id, 10);
     const taskId = parseInt(taskIdParam, 10);
     if (isNaN(userId) || isNaN(taskId)) {
@@ -63,7 +66,10 @@ export class TasksController {
   }
 
   @Delete(':taskId')
-  async deleteTaskById(@Param('id') id: string, @Param('taskId') taskIdParam: string) {
+  async deleteTaskById(
+    @Param('id') id: string,
+    @Param('taskId') taskIdParam: string,
+  ) {
     const userId = parseInt(id, 10);
     const taskId = parseInt(taskIdParam, 10);
     if (isNaN(userId) || isNaN(taskId)) {

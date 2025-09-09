@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Task } from 'src/tasks/task.entity';
+import { Task } from '../tasks/task.entity';
 
 @Entity()
 export class Subtask {
@@ -15,6 +15,6 @@ export class Subtask {
   @Column()
   position: number;
 
-  @ManyToOne(() => Task, task => task.subtasks, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Task, (task) => task.subtasks, { onDelete: 'CASCADE' })
   task: Task;
 }

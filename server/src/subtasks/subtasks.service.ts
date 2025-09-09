@@ -10,7 +10,10 @@ export class SubtasksService {
     @InjectRepository(Subtask) private subtasksRepository: Repository<Subtask>,
   ) {}
 
-  async syncSubtasks(subtasks: Partial<Subtask>[], task: Task): Promise<Subtask[]> {
+  async syncSubtasks(
+    subtasks: Partial<Subtask>[],
+    task: Task,
+  ): Promise<Subtask[]> {
     // get existing subtasks from bdd
     const existingSubtasks = await this.subtasksRepository.find({
       where: { task: { id: task.id } },
@@ -18,12 +21,16 @@ export class SubtasksService {
 
     const result: Subtask[] = [];
 
-    const clientSubtasksIds = subtasks.map(subtask => subtask.id).filter(id => id !== undefined);
+    const clientSubtasksIds = subtasks
+      .map((subtask) => subtask.id)
+      .filter((id) => id !== undefined);
 
     // Delete subtasks non existing for client
-    const toDelete = existingSubtasks.filter(subtask => !clientSubtasksIds.includes(subtask.id));
+    const toDelete = existingSubtasks.filter(
+      (subtask) => !clientSubtasksIds.includes(subtask.id),
+    );
     if (toDelete.length > 0) {
-      const idsToDelete = toDelete.map(subtask => subtask.id);
+      const idsToDelete = toDelete.map((subtask) => subtask.id);
       await this.subtasksRepository.delete({ id: In(idsToDelete) });
     }
 
@@ -31,7 +38,7 @@ export class SubtasksService {
     for (const subtask of subtasks || []) {
       if (subtask.id) {
         // update
-        const existing = existingSubtasks.find(e => e.id === subtask.id);
+        const existing = existingSubtasks.find((e) => e.id === subtask.id);
         if (existing) {
           existing.title = subtask.title ?? existing.title;
           existing.isDone = subtask.isDone ?? existing.isDone;
