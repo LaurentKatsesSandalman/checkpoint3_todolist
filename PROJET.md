@@ -15,3 +15,13 @@ Todolist is supposed to be a "one machine" project
 Considering this, CI is on push only, not on PR
 CI is on each push and will trigger lint & test on front & back
 Jobs are executed on Ubuntu, Windows and macOS at the same time (matrix strategy)
+
+## Migrations
+Migrations were an AWFUL issue in this project!
+Migrations are done in docker
+Create migration: docker exec -it nodejs_backend_todolist npm run migration:generate -- ./src/migrations/-MigrationName-
+Run migration: docker exec -it nodejs_backend_todolist npm run migration:run
+Revert migration: docker exec -it nodejs_backend_todolist npm run migration:revert
+
+
+

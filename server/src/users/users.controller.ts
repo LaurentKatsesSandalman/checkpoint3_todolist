@@ -1,27 +1,26 @@
-import { Controller, Param, Post, Body, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Param,
+  Post,
+  Body,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { OwnerGuard } from 'src/common/guards/owner.guard';
 
 @Controller('/users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
-  /*
-@Get()
-getAllUsers(){ // should not be needed
-    return this.userService.getUsers();
-}
-
-@Get(':id')
-getUserById(@Param() params){ // probably not ! I want to get user by id to check things during auth
-    return this.userService.getUser(params.id);
-}
-*/
 
   @Post()
   createUser(@Body() user: User) {
     return this.userService.saveUser(user);
   }
 
+  @UseGuards(AuthGuard('jwt'), OwnerGuard)
   @Delete(':id')
   deleteUserById(@Param('id') id: string) {
     // see if you manage to do a /me route instead
