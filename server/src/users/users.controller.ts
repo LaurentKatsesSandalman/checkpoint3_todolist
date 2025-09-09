@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { User } from './users.entity';
+import { CreateUserDto } from './create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { OwnerGuard } from 'src/common/guards/owner.guard';
 
@@ -16,8 +16,8 @@ export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Post()
-  createUser(@Body() user: User) {
-    return this.userService.saveUser(user);
+  createUser(@Body() createUserDto: CreateUserDto) {
+    return this.userService.saveUser(createUserDto);
   }
 
   @UseGuards(AuthGuard('jwt'), OwnerGuard)
