@@ -21,13 +21,13 @@ export class SubtasksService {
 
     const result: Subtask[] = [];
 
-    const clientSubtasksIds = subtasks
+    const clientSubtasksWithIds = subtasks
       .map((subtask) => subtask.id)
       .filter((id) => id !== undefined);
 
     // Delete subtasks non existing for client
     const toDelete = existingSubtasks.filter(
-      (subtask) => !clientSubtasksIds.includes(subtask.id),
+      (subtask) => !clientSubtasksWithIds.includes(subtask.id),
     );
     if (toDelete.length > 0) {
       const idsToDelete = toDelete.map((subtask) => subtask.id);
