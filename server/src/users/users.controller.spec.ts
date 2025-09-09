@@ -3,7 +3,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { OwnerGuard } from 'src/common/guards/owner.guard';
+import { OwnerGuard } from '.././common/guards/owner.guard';
 
 // Mock service
 const mockUsersService = () => ({
