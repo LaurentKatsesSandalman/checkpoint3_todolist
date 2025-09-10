@@ -6,9 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const allowedOrigins = process.env.CORS_ORIGINS
-    ? process.env.CORS_ORIGINS.split(',')
-    : [];
+  const allowedOrigins = process.env.CORS_ORIGINS;
 
   app.enableCors({
     origin: allowedOrigins,
@@ -17,6 +15,8 @@ async function bootstrap() {
   });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
+    app.setGlobalPrefix('api');
 
   // Swagger Configuration for DTOs
   const config = new DocumentBuilder()

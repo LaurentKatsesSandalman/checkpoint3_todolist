@@ -22,7 +22,7 @@ export class CreateUserDto {
   @Matches(/(?=.*[0-9])/, {
     message: 'Le mot de passe doit contenir au moins un chiffre',
   })
-  @Matches(/(?=.*[!@#$%^&*])/, {
+  @Matches(/(?=.*[-!@#$%^&*])/, {
     message: 'Le mot de passe doit contenir au moins un caractère spécial',
   })
   @Matches(/^[\p{L}\p{N}!@#$%^&*()_\-+=]*$/u, {
