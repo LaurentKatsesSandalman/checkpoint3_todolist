@@ -1,8 +1,8 @@
 import type { Task } from "../../types/task";
 import styles from "./TaskPreview.module.css";
 
-import { useAppContext } from "../../context/AppContext";
-import { useNavigate } from "react-router-dom";
+// import { useAppContext } from "../../context/AppContext";
+import { Link, useNavigate } from "react-router-dom";
 import deleteIcon from "../../assets/icons/suppr.png";
 
 
@@ -13,7 +13,7 @@ interface TaskPreviewProps {
 }
 
 function TaskPreview({ task, setMyTasks }: TaskPreviewProps){
-const {authToken, userId} = useAppContext();
+
  const navigate = useNavigate();
 
 
@@ -24,11 +24,12 @@ const {authToken, userId} = useAppContext();
 
     
     return(<>
-    
+    <div className={styles.container}>
     <div>
         <button className="icon" onClick={handleDelete}><img className="icon" src={deleteIcon} alt="close icon" /></button>
     </div>
-    <div><h1>{task.title}</h1></div>
+    <div><Link to={`/tasks/${task.id}`}><h1>{task.title}</h1></Link></div>
+    </div>
 
     
      

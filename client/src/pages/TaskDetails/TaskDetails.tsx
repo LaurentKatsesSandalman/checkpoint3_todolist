@@ -57,9 +57,9 @@ const {task_id} = useParams<{task_id: string}>()
         try {
             await axios.patch(
                 `${import.meta.env.VITE_API_URL}/api/users/${userId}/tasks/${task_id}`,
-                {
-                    task: task,
-                },
+                
+                task,
+                
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -105,13 +105,13 @@ const handleChange = (
         <form onSubmit={handleSubmit}>
         <div>
             <input type="text" value={task.title} onChange={(event) => {
-                                    event.preventDefault();
+                                    
                                     handleChange("title", event.target.value);
                                 }} className={styles.taskTitle} maxLength={100}/>
         </div>
         <div>
             <input type="text" value={task.description} onChange={(event) => {
-                                    event.preventDefault();
+                                    
                                     handleChange("description", event.target.value);
                                 }} className={styles.taskDesc} maxLength={250}/>
         </div>

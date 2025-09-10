@@ -38,6 +38,13 @@ h1 {
   text-align: center;
 }
 
+button{
+  padding: 2px;
+  width:32px;
+  aspect-ratio: 1/1;
+
+}
+
 button:hover {
   background-color: var(--color-line);
   color:var(--color-bg)
@@ -45,5 +52,6 @@ button:hover {
 
 .icon{
   aspect-ratio: 1/1;
-  width:42px;
+  width:30px;
+  padding: 0;
 }

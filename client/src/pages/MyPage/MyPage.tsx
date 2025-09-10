@@ -5,6 +5,7 @@ import axios from "axios";
 import TaskPreview from "../../components/TaskPreview/TaskPreview";
 import addIcon from "../../assets/icons/add.png";
 import { useNavigate } from "react-router-dom";
+import styles from "./MyPage.module.css"
 
 
 function MyPage(){
@@ -67,13 +68,16 @@ try {
 
     return(<>
         <h1>this is my page</h1>
+        <div className={styles.content}>
         {myTasks.map((task)=>(
         <TaskPreview key={task.id} task={task} setMyTasks={setMyTasks}/>
         ))}
             <div>
         <button className="icon" onClick={handleAdd}><img className="icon" src={addIcon} alt="add icon" /></button>
     </div>
+        </div>
         </>
+
     )
 }
 
