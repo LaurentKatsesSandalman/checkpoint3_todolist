@@ -1,8 +1,14 @@
 Notre formation CDA à la Wild Code School a été rythmée par des Projets, mais aussi des examens d’autoévaluation appelés Checkpoint.
+
 Le Checkpoint3 ne contenait qu’un seul exercice : réaliser en trois jours ouvrables (3*7.5h) un site de type “créateur de todo list” avec client React, serveur NestJS, ORM et base de données MySQL, le tout dans des containers Docker avec un CI (Continuous Integration) contenant tests et lint.
+
 Voulant me rapprocher au maximum des pratiques professionnelles, j’ai commencé par Dockeriser le projet et configurer le CI, puis le module Auth permettant de sécuriser l’accès.
+
 J’ai configuré le CI pour se déclencher à chaque push, et j’ai fait des push réguliers, bien que je sois seul sur le projet, et sur une seule machine.
+
 Pour vérifier la qualité de mon script CI et parce qu’il me semblait que c’était le module le plus important à tester, j’ai mis en place de manière quasiment exhaustive des tests unitaires sur le service et le contrôleur du module Auth.
+
+Le front n'ayant pas été fini dans les 3j, le site n'a pas été déployé. Mais j'ai validé mon Checkpoint avec une très bonne appreciation du formateur 😛
 ______
 <p align="left">
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
